@@ -15,9 +15,13 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  // category: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Category',
+  //   required: true
+  // },
   category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    type: String,
     required: true
   },
   condition: {
@@ -56,7 +60,7 @@ const productSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index for search and filtering
+// Index for search and filtering`
 productSchema.index({ title: 'text', description: 'text' });
 productSchema.index({ category: 1, status: 1 });
 productSchema.index({ seller: 1 });

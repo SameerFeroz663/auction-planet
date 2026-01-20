@@ -41,9 +41,15 @@ router.post('/register', [
     await user.save();
 
     // Create token
+    // const token = jwt.sign(
+    //   { userId: user._id },
+    //   process.env.JWT_SECRET,
+    //   { expiresIn: '7d' }
+    // );
+
     const token = jwt.sign(
       { userId: user._id },
-      process.env.JWT_SECRET,
+      'mySuperSecretKey123',
       { expiresIn: '7d' }
     );
 
@@ -88,14 +94,21 @@ router.post('/login', [
     }
 
     // Create token
+    // const token = jwt.sign(
+    //   { userId: user._id },
+    //   process.env.JWT_SECRET,
+    //   { expiresIn: '7d' }
+    // );
+
     const token = jwt.sign(
       { userId: user._id },
-      process.env.JWT_SECRET,
+      'mySuperSecretKey123',
       { expiresIn: '7d' }
     );
 
     res.json({
       token,
+      message: "Login sucessfully",
       user: {
         id: user._id,
         name: user.name,

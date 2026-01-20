@@ -21,7 +21,7 @@ const BuyNow = () => {
   const { addProductToWishlist, removeProductFromWishlist, isProductInWishlist } = useWishlist();
   const { isAuthenticated } = useAuth();
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   useEffect(() => {
     fetchProducts();
@@ -150,7 +150,7 @@ const BuyNow = () => {
                 <div key={product._id} className="product-card">
                   <div className="product-image">
                     <img
-                      src={product.images?.[0] ? `/uploads/${product.images[0]}` : '/placeholder.jpg'}
+                      src={product.images?.[0] ? `http://localhost:5000/uploads/${product.images[0]}` : '/placeholder.jpg'}
                       alt={product.title}
                     />
                     <button
@@ -165,7 +165,7 @@ const BuyNow = () => {
                     <p className="product-condition">{product.condition}</p>
                     <p className="product-price">${product.price.toFixed(2)}</p>
                     <button
-                      className="btn-add-cart"
+                      className="btn-add-cart btn-primary"
                       onClick={() => handleAddToCart(product._id)}
                     >
                       Add to Cart

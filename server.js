@@ -11,7 +11,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    // origin: process.env.CLIENT_URL || 'http://localhost:5000',
+    origin: 'http://localhost:5000',
     methods: ['GET', 'POST']
   }
 });
@@ -23,7 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/auction-planet')
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/auction-planet')
+mongoose.connect('mongodb://localhost:27017/auction-planet')
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log('MongoDB Connection Error:', err));
 

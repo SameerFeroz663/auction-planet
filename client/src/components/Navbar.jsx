@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import { ShoppingCart, LogOut, LogIn } from 'lucide-react';
+
 import './Navbar.css';
 
 const Navbar = () => {
@@ -14,65 +16,60 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      {/* Top Bar */}
-      <div className="top-bar">
-        <div className="top-bar-container">
-          <div className="top-bar-right">
-            <button className="icon-btn" title="Search">
-              <span className="search-icon">🔍</span>
-            </button>
-            <button className="icon-btn" title="Favorites">
-              <span className="star-icon">⭐</span>
-            </button>
-          </div>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">
+          <span className="logo-text">Auction Planet</span>
+        </Link>
+
+        <ul className="navbar-menu">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/auctions">Auctions</Link></li>
+          <li><Link to="/buy-now">Buy Now</Link></li>
+          <li><Link to="/sell-item">Sell Item</Link></li>
+          <li><Link to="/consignment">Consignment</Link></li>
+          <li><Link to="/my-account">My Account</Link></li>
+        </ul>
+
+        <div className="navbar-right">
+          {isAuthenticated ? (
+            <>
+              <Link to="/cart" className="cart-btn" title="Shopping Cart">
+                <div className="cart-icon">
+                  <ShoppingCart size={18} color="black" />
+                  {getCartCount() > 0 && (
+                    <span className="cart-badge">{getCartCount()}</span>
+                  )}
+                </div>
+              </Link>
+
+              <span className="user-email">{user?.email}</span>
+              <button onClick={handleLogout} className="logout-btn">
+                <span className="logout-icon d-flex align-items-center">
+                   <LogOut size={15} color="white" />
+                </span>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="nav-link">
+                <button className="d-flex align-items-center gap-3 btn border border-gray text-dark px-3 py-1 hover-bg-warning custom-hover">
+                   <LogIn size={16} color="black" />
+                  Login
+                </button>
+              </Link>
+              <Link to="/register" className="nav-link">
+                <button className="btn btn-primary  px-3 py-1 hover-bg-warning ">
+                  Register
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
-
-      {/* Main Navbar */}
-      <nav className="navbar">
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo">
-            <span className="logo-icon">🔨</span>
-            <span className="logo-text">Auction Planet</span>
-          </Link>
-
-          <ul className="navbar-menu">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/auctions">Auctions</Link></li>
-            <li><Link to="/buy-now">Buy Now</Link></li>
-            <li><Link to="/sell-item">Sell Item</Link></li>
-            <li><Link to="/consignment">Consignment</Link></li>
-            <li><Link to="/my-account">My Account</Link></li>
-          </ul>
-
-          <div className="navbar-right">
-            {isAuthenticated ? (
-              <>
-                <Link to="/cart" className="cart-btn" title="Shopping Cart">
-                  <span className="cart-icon">🛒</span>
-                  {getCartCount() > 0 && (
-                    <span className="cart-count">{getCartCount()}</span>
-                  )}
-                </Link>
-                <span className="user-email">{user?.email}</span>
-                <button onClick={handleLogout} className="logout-btn">
-                  <span className="logout-icon">🚪</span>
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="nav-link">Login</Link>
-                <Link to="/register" className="nav-link">Register</Link>
-              </>
-            )}
-          </div>
-        </div>
-      </nav>
-    </>
+    </nav>
   );
 };
 
 export default Navbar;
-

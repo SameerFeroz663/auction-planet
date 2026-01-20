@@ -17,6 +17,7 @@ import BuyNow from './pages/BuyNow';
 import Cart from './pages/Cart';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -27,62 +28,63 @@ function App() {
             <div className="app">
               <Navbar />
               <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/auctions" element={<AuctionList />} />
-              <Route path="/auctions/:id" element={<AuctionDetail />} />
-              <Route
-                path="/create-auction"
-                element={
-                  <PrivateRoute>
-                    <CreateAuction />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/dashboard"
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/my-account"
-                element={
-                  <PrivateRoute>
-                    <MyAccount />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/sell-item"
-                element={
-                  <PrivateRoute>
-                    <SellItem />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/consignment"
-                element={
-                  <PrivateRoute>
-                    <Consignment />
-                  </PrivateRoute>
-                }
-              />
-              <Route path="/buy-now" element={<BuyNow />} />
-              <Route
-                path="/cart"
-                element={
-                  <PrivateRoute>
-                    <Cart />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/auctions" element={<AuctionList />} />
+                <Route path="/auctions/:id" element={<AuctionDetail />} />
+                <Route
+                  path="/create-auction"
+                  element={
+                    <PrivateRoute>
+                      <CreateAuction />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <PrivateRoute>
+                      <Dashboard />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/my-account"
+                  element={
+                    <PrivateRoute>
+                      <MyAccount />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/sell-item"
+                  element={
+                    <PrivateRoute>
+                      <SellItem />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/consignment"
+                  element={
+                    <PrivateRoute>
+                      <Consignment />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="/buy-now" element={<BuyNow />} />
+                <Route
+                  path="/cart"
+                  element={
+                    <PrivateRoute>
+                      <Cart />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+              <Footer />
           </main>
         </div>
       </Router>

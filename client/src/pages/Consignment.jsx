@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import './Consignment.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Consignment = () => {
   const navigate = useNavigate();
@@ -197,7 +197,7 @@ const Consignment = () => {
       });
 
       alert('Auction shop submitted for review! You will be notified once approved.');
-      navigate('/account');
+      navigate('/my-account');
     } catch (err) {
       console.error('Error creating auction shop:', err);
       setError(err.response?.data?.message || 'Failed to create auction shop');
@@ -706,12 +706,12 @@ const Consignment = () => {
           {/* Form Actions */}
           <div className="form-actions">
             {currentStep > 1 && (
-              <button type="button" className="btn-secondary" onClick={prevStep}>
+              <button type="button" className="btn-primary" onClick={prevStep}>
                 Previous
               </button>
             )}
 
-            <button type="button" className="btn-secondary" onClick={handleSaveDraft}>
+            <button type="button" className="btn-primary" onClick={handleSaveDraft}>
               Save as Draft
             </button>
 
