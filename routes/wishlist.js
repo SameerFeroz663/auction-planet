@@ -6,7 +6,8 @@ const { auth } = require('../middleware/auth');
 // Get user's wishlist
 router.get('/', auth, async (req, res) => {
   try {
-    let wishlist = await Wishlist.findOne({ user: req.user.id })
+    const userId = req.userId;
+    let wishlist = await Wishlist.findOne({ user: userId })
       .populate('products', 'title price images condition')
       .populate('auctions', 'title currentBid endTime images');
     

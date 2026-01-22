@@ -12,6 +12,13 @@
   justify-content: flex-end;
 }
 
+/* Remove this */
+.navbar, .navbar a h1 {
+  all: unset;
+}
+
+
+
 .top-bar-right {
   display: flex;
   gap: 12px;
@@ -38,6 +45,8 @@
   display: inline-block;
 }
 
+
+
 /* Main Navbar */
 .navbar {
   background-color: white;
@@ -45,6 +54,11 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  
+}
+
+.navbar ul li{
+  cursor: pointer !important;
 }
 
 .navbar-container {
@@ -52,8 +66,8 @@
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between !important;
+  align-items: center !important;
   height: 70px;
 }
 
@@ -78,10 +92,10 @@
 .navbar-menu {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 20px;
   align-items: center;
   margin: 0;
-  padding: 0;
+  padding: 20;
 }
 
 .navbar-menu a {
@@ -129,26 +143,25 @@
   transition: background-color 0.3s;
 }
 
-.cart-btn:hover {
-  background-color: #f8f9fa;
+
+.cart-icon {
+  display: inline-block;
+  align-content: center !important;
+  border-radius: 8px;
+  padding: 4px 10px !important;
+  transition: ease 3s;
+  color: white !important;
+}
+.cart-icon:hover{
+  background: #ffc107;
 }
 
 .cart-icon {
   display: inline-block;
-}
-
-.cart-count {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background-color: #FF6B35;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 10px;
-  min-width: 18px;
-  text-align: center;
+  border-radius: 8px;
+  padding: 0px 10px;
+  transition: ease 0.3s;
+  color: unset !important; /* remove the forced white */
 }
 
 .user-email {
@@ -156,6 +169,33 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
+
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  color: white !important;
+  background-color: red;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid white;
+  position: absolute;
+  top: 10px;
+  right: 6px;
+}
+.cart-icon svg {
+  color: #333; /* dark icon on white background */
+}
+
+
 
 .logout-btn {
   background-color: #EF4444;
@@ -222,4 +262,10 @@
   .user-email {
     font-size: 0.8rem;
   }
+}
+
+
+.custom-hover:hover {
+  background-color: #ffc107  !important;
+  color: black !important;
 }

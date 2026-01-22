@@ -17,7 +17,8 @@ const SellItem = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+  const API_URL = 'http://localhost:5000/api';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +35,9 @@ const SellItem = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+      console.log('FORM DATA BEFORE SUBMIT:', formData);
+  console.log('Images array before sending:', images);
 
     if (formData.saleType === 'buy-now') {
       // Create product for Buy Now
@@ -52,6 +56,13 @@ const SellItem = () => {
         images.forEach((image) => {
           formDataToSend.append('images', image);
         });
+
+        if (images.length === 0) {
+          alert('Please select at least one image.');
+          setLoading(false);
+          return;
+        }
+
 
         await axios.post(`${API_URL}/products`, formDataToSend, {
           headers: {
@@ -240,10 +251,10 @@ const SellItem = () => {
 
           {/* Submit Button */}
           <div className="form-actions">
-            <button type="button" className="btn-secondary" onClick={() => navigate(-1)} disabled={loading}>
+            <button className='btn btn-primary bg-transparent border border-gray text-dark cancel-hover' type="button" id="" onClick={() => navigate(-1)} disabled={loading}>
               Cancel
             </button>
-            <button type="submit" className="btn-primary" disabled={loading}>
+            <button type="submit" className="btn btn-primary" disabled={loading}>
               {loading ? 'Submitting...' : formData.saleType === 'buy-now' ? 'List Product' : 'Continue to Auction'}
             </button>
           </div>

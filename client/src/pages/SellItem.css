@@ -11,9 +11,10 @@
 }
 
 .sell-item-container h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #333;
   margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .page-subtitle {
@@ -186,13 +187,15 @@
 .form-actions {
   display: flex;
   gap: 16px;
-  justify-content: flex-end;
+  justify-content: center;
+  /* centers horizontally */
+  align-items: center;
+  /* optional: centers vertically if needed */
   margin-top: 40px;
 }
 
-.btn-primary,
-.btn-secondary {
-  padding: 14px 32px;
+.btn-primary{
+  padding: 14px 28px;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
@@ -201,25 +204,11 @@
   border: none;
 }
 
-.btn-primary {
-  background: #4169E1;
-  color: white;
+.cancel-hover:hover{
+  background-color: #ffc107  !important;
+  color: black !important;
 }
 
-.btn-primary:hover {
-  background: #2952CC;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
-}
-
-.btn-secondary {
-  background: #e5e7eb;
-  color: #666;
-}
-
-.btn-secondary:hover {
-  background: #cbd5e1;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

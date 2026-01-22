@@ -43,6 +43,7 @@ const AuctionList = () => {
         limit: 12,
       };
       const response = await auctionsAPI.getAll(params);
+      console.log("fetch auctions" , response);
       setAuctions(response.data.auctions);
       setPagination({
         currentPage: response.data.currentPage,
@@ -70,9 +71,9 @@ const AuctionList = () => {
 
   return (
     <div className="auction-list-page">
-      <div className="container">
-        <h1>Browse Auctions</h1>
-        
+      <h1>Browse Auctions</h1>
+      <div className="container-fluid d-flex justify-between">
+
         <div className="filters-section">
           <form onSubmit={handleSearch} className="search-form">
             <input
@@ -84,7 +85,7 @@ const AuctionList = () => {
             />
             <button type="submit" className="btn btn-primary">Search</button>
           </form>
-          
+
           <div className="filters">
             <select name="category" value={filters.category} onChange={handleFilterChange}>
               <option value="">All Categories</option>
@@ -94,7 +95,7 @@ const AuctionList = () => {
                 </option>
               ))}
             </select>
-            
+
             <select name="status" value={filters.status} onChange={handleFilterChange}>
               <option value="active">Active</option>
               <option value="pending">Upcoming</option>
@@ -114,7 +115,7 @@ const AuctionList = () => {
                 <AuctionCard key={auction._id} auction={auction} />
               ))}
             </div>
-            
+
             {pagination.totalPages > 1 && (
               <div className="pagination">
                 <button

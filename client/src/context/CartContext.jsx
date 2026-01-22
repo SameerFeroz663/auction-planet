@@ -17,7 +17,8 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth();
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const API_URL = 'http://localhost:5000/api';
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -41,7 +42,12 @@ export const CartProvider = ({ children }) => {
       const response = await axios.get(`${API_URL}/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setCart(response.data);
+      // setCart(response.data);
+      setCart({
+        items: response.data.items || [],
+        totalAmount: response.data.totalAmount || 0
+      });
+      console.log("cart data" , response.data)
     } catch (error) {
       console.error('Error fetching cart:', error);
       // Set empty cart on error

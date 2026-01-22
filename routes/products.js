@@ -119,12 +119,14 @@ router.post('/', auth, upload.array('images', 5), async (req, res) => {
 router.put('/:id', auth, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
+    const userId = req.userId;
     
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
     
-    if (product.seller.toString() !== req.user.id) {
+
+    if (product.seller.toString() !== userId) {
       return res.status(403).json({ message: 'Not authorized' });
     }
     
@@ -150,12 +152,13 @@ router.put('/:id', auth, async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
+    const userId = req.userId;
     
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
     
-    if (product.seller.toString() !== req.user.id) {
+    if (product.seller.toString() !== userId) {
       return res.status(403).json({ message: 'Not authorized' });
     }
     

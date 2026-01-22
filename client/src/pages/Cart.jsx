@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
+import { Trash2, ShoppingBag, CreditCard } from 'lucide-react';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -31,12 +32,17 @@ const Cart = () => {
     return (
       <div className="cart-page">
         <div className="cart-container">
-          <h1>Shopping Cart</h1>
           <div className="empty-cart">
-            <div className="empty-icon">🛒</div>
-            <h2>Your cart is empty</h2>
-            <p>Add some items to get started!</p>
-            <button className="btn-primary" onClick={() => navigate('/buy-now')}>
+            <div className="empty-icon">
+              {/* <ShoppingBag className="h-16 w-16 text-muted-foreground mx-auto mb-4" /> */}
+              <ShoppingBag 
+                className="d-block mx-auto mb-3 text-muted" 
+                style={{ width: '64px', height: '64px' }} 
+              />
+            </div>
+            <h1 className="fw-bold mb-2">Your cart is empty</h1>
+            <p className="text-muted mb-4">Add some items to get started</p>
+            <button className="btn browse-btn p-2" onClick={() => navigate('/buy-now')}>
               Browse Products
             </button>
           </div>
@@ -61,7 +67,7 @@ const Cart = () => {
               <div key={item._id} className="cart-item">
                 <div className="item-image">
                   <img
-                    src={item.product?.images?.[0] ? `/uploads/${item.product.images[0]}` : '/placeholder.jpg'}
+                    src={item.product?.images?.[0] ? `http://localhost:5000/uploads/${item.product.images[0]}` : '/placeholder.jpg'}
                     alt={item.product?.title || 'Product'}
                   />
                 </div>
