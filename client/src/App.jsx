@@ -19,6 +19,12 @@ import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 import Footer from './components/Footer';
 
+// Admin Pages
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import UsersManagement from './pages/Admin/UsersManagement';
+import AuctionShopsManagement from './pages/Admin/AuctionShopsManagement';
+import DisputesManagement from './pages/Admin/DisputesManagement';
+
 function App() {
   return (
     <AuthProvider>
@@ -80,6 +86,40 @@ function App() {
                   element={
                     <PrivateRoute>
                       <Cart />
+                    </PrivateRoute>
+                  }
+                />
+
+                {/* Admin Routes */}
+                <Route
+                  path="/admin"
+                  element={
+                    <PrivateRoute>
+                      <AdminDashboard />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/users"
+                  element={
+                    <PrivateRoute>
+                      <UsersManagement />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/auction-shops"
+                  element={
+                    <PrivateRoute>
+                      <AuctionShopsManagement />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/disputes"
+                  element={
+                    <PrivateRoute>
+                      <DisputesManagement />
                     </PrivateRoute>
                   }
                 />

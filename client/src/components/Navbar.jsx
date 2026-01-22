@@ -29,6 +29,9 @@ const Navbar = () => {
           <li><Link to="/sell-item">Sell Item</Link></li>
           <li><Link to="/consignment">Consignment</Link></li>
           <li><Link to="/my-account">My Account</Link></li>
+          {user?.role === 'admin' && (
+            <li><Link to="/admin" className="admin-link">Admin Panel</Link></li>
+          )}
         </ul>
 
         <div className="navbar-right">

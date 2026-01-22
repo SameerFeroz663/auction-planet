@@ -12,7 +12,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     // origin: process.env.CLIENT_URL || 'http://localhost:5000',
-    origin: 'http://localhost:5000',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST']
   }
 });
@@ -91,6 +91,9 @@ app.use('/api/lots', require('./routes/lots'));
 app.use('/api/payments', require('./routes/payments'));
 app.use('/api/deliveries', require('./routes/deliveries'));
 app.use('/api/disputes', require('./routes/disputes'));
+
+// Admin Routes
+app.use('/api/admin', require('./routes/admin'));
 
 // Health check
 app.get('/api/health', (req, res) => {
